@@ -5,6 +5,10 @@
 
     Setting `disableAnalytics` to true will prevent any data from being sent.
   */
+  "skipGit" : true,
+  "liveReload" : true,
+  "watcher": "polling",
+  "environment" : "development",
   "disableAnalytics": false
   /*"output-path": "../www" */
 }

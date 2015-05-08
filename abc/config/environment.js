@@ -18,13 +18,23 @@ module.exports = function(environment) {
       // when it is created
     }
   };
-
+  
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // https://github.com/rwjblue/ember-cli-content-security-policy
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self'", // Allow scripts from https://cdn.mxpnl.com
+      'font-src': "'self'", // Allow fonts to be loaded from http://fonts.gstatic.com
+      'connect-src': "'self' http://localhost:3000", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+      'img-src': "'self' http://localhost:3000",
+      'style-src': "'self' 'unsafe-inline'", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
+      'media-src': "'self'"
+    }
   }
 
   if (environment === 'test') {
@@ -40,6 +50,16 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    // https://github.com/rwjblue/ember-cli-content-security-policy
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self'", // Allow scripts from https://cdn.mxpnl.com
+      'font-src': "'self'", // Allow fonts to be loaded from http://fonts.gstatic.com
+      'connect-src': "'self' http://dalianshops.com", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+      'img-src': "'self' http://dalianshops.com",
+      'style-src': "'self' 'unsafe-inline'", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
+      'media-src': "'self'"
+    }
 
   }
 
